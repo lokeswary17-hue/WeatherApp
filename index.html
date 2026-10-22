@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-wrapper">
+    <main class="weather-card" id="weather-card">
+      
+      <!-- App Header -->
+      <header class="card-header">
+        <div class="header-icon">🌤️</div>
+        <h1 class="card-title">Weather Forecast</h1>
+      </header>
+
+      <!-- Search Form -->
+      <form id="search-form" class="search-form" novalidate>
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input
+            type="text"
+            id="city-input"
+            class="city-input"
+            placeholder="Search city (e.g., Paris, Tokyo)..."
+            autocomplete="off"
+            spellcheck="false"
+            required
+            aria-label="Search city"
+          >
+          <button type="button" id="clear-btn" class="clear-btn hidden" aria-label="Clear input">
+            &times;
+          </button>
+        </div>
+        <button type="submit" id="search-btn" class="search-btn">
+          <span>Search</span>
+        </button>
+      </form>
+
+      <!-- Loading State -->
+      <div id="loading" class="status-panel hidden" aria-live="polite">
+        <div class="spinner"></div>
+        <p class="status-text">Fetching weather data...</p>
+      </div>
+
+      <!-- Error State -->
+      <div id="error-message" class="status-panel error-panel hidden" role="alert">
+        <span class="status-icon" aria-hidden="true">⚠️</span>
+        <div class="error-content">
+          <p class="error-heading">Oops!</p>
+          <p id="error-text" class="status-text">City not found. Please try again.</p>
+        </div>
+      </div>
+
+      <!-- Weather Content -->
+      <div id="weather-content" class="weather-content hidden">
+        <!-- Current Weather Section -->
+        <section class="current-weather" aria-label="Current Weather">
+          <div class="location-container">
+            <h2 id="city-name" class="city-name">--</h2>
+            <p id="current-date" class="current-date">--</p>
+          </div>
+
+          <div class="current-main">
+            <div id="weather-emoji" class="weather-emoji" aria-label="Weather condition">☀️</div>
+            <div class="temp-display">
+              <span id="current-temp" class="current-temp">--</span>
+              <span class="temp-unit">°C</span>
+            </div>
+            <p id="weather-desc" class="weather-desc">Clear sky</p>
+          </div>
+
+          <!-- Secondary Metrics -->
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-icon">💧</div>
+              <div class="metric-details">
+                <span class="metric-label">Humidity</span>
+                <span id="humidity" class="metric-value">--%</span>
+              </div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon">💨</div>
+              <div class="metric-details">
+                <span class="metric-label">Wind Speed</span>
+                <span id="wind-speed" class="metric-value">-- km/h</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5-Day Forecast Section -->
+        <section class="forecast-section" aria-label="5-Day Forecast">
+          <h3 class="forecast-title">5-Day Forecast</h3>
+          <div id="forecast-container" class="forecast-grid">
+            <!-- Dynamically populated via script.js -->
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer Info -->
+      <footer class="card-footer">
+        <p>Powered by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> • No API Key Needed</p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
